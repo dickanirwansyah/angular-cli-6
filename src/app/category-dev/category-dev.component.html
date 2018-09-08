@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="container-fluid">
+      <h3 align="center">Data Category</h3>
+      <button type="button" class="btn btn-success" (click)="openModal(template)">
+        Add Data
+      </button>
+
+      <!--modal insert-->
+      <ng-template #template>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Insert Category</h4>
+          </div>
+          <form (ngSubmit)="createCategory()">
+          <div class="modal-body">
+            <div align="center">
+              <div class="col-lg-7">
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="newCategoryDev.name" name="name" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                  <select class="form-control" [(ngModel)]="newCategoryDev.status" name="status">
+                    <option *ngFor="let status of selectStatus" [value]="status.id">
+                      {{status.value}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">
+              Save
+            </button>
+            <button type="button" class="btn btn-default" (click)="modalRef.hide()">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </ng-template>
+      <!--modal insert-->
+
+      <!--modal update-->
+      <ng-template #templateUpdate>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Update Category</h4>
+        </div>
+        <form (ngSubmit)="executeUpdateCategory()">
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="number" name="id" class="form-control" [(ngModel)]="editingCategoryDev.id" readonly>
+          </div>
+          <div class="form-group">
+            <input type="text" name="name" class="form-control" [(ngModel)]="editingCategoryDev.name" placeholder="name">
+          </div>
+          <div class="form-group">
+            <select class="form-control" name="status" [(ngModel)]="editingCategoryDev.status">
+                <option *ngFor="let status of selectStatus" [value]="status.id">
+                  {{ status.value }}
+                </option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">
+              Update
+            </button>&nbsp;
+            <button type="button" (click)="modalRef.hide()" class="btn btn-default">
+              Cancel
+            </button>
+        </div>
+      </form>
+      </ng-template>
+      <!--modal update-->
+
+      <br/>
+      <br/>
+      <div class="page-header">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let catDev of categoryDevs; let i = index">
+                <td>{{ i + 1}}</td>
+                <td>{{ catDev.name }}</td>
+                <td *ngIf="catDev.status === false">NOT OKE</td>
+                <td *ngIf="catDev.status === true">OKE</td>
+                <td>
+                  <button type="button" (click)="updateCategoryById(catDev.id, templateUpdate)" class="btn btn-success">
+                    Update
+                  </button>
+                  &nbsp;
+                  <button type="button" class="btn btn-default">
+                    Destroy
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Option</th>
+              </tr>
+            </tfoot>
+        </table>
+      </div>
+  </div>
+</div>
