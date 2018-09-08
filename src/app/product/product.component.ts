@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product/Product';
+import { NgForm } from '@angular/forms';
 import { ProductService } from '../product/ProductService';
 import { CategoryService } from '../category/CategoryService';
 import { Observable } from 'rxjs';
@@ -13,8 +14,10 @@ import { Category } from '../category/Category';
 export class ProductComponent implements OnInit {
 
   products: Observable<Product[]>
-  product: Product = new Product();
-  categorys=[]
+  newProduct: Product = new Product();
+  editProduct: Product = new Product();
+  categorys=[];
+
   constructor(
     private _productService: ProductService,
     private _categoryService: CategoryService) { }
@@ -24,8 +27,12 @@ export class ProductComponent implements OnInit {
     this.getCategoryComponent()
   }
 
-  onSubmited(){
-
+  createNewProduct(productForm: NgForm){
+    this._productService.createNewProduct(this.newProduct)
+      .subscribe(data => {
+        this.getProductComponentList();
+        this.newProduct = new Product();
+      });
   }
 
   getCategoryComponent(){
