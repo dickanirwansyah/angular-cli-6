@@ -2,7 +2,7 @@ import { CategoryDev } from '../category-dev/CategoryDev';
 
 export class Product{
 
-  id:number;
+  id:string;
   name:string;
   stock:number;
   price:number;

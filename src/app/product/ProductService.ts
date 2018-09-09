@@ -23,4 +23,9 @@ export class ProductService{
     return this._httpClient.post(this.baseUrl+'/api/product/'+dataProduct.categoryId, dataProduct);
   }
 
+  /** get id product **/
+  getProductById(productId: number): Observable<any>{
+    return this._httpClient.get(this.baseUrl+'/api/product/'+productId);
+  }
+
 }
