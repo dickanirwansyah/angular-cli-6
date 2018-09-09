@@ -34,6 +34,7 @@
     <div class="modal-header">
       <h4 class="modal-title pull-left">Update Product</h4>
     </div>
+    <form (ngSubmit)="executeUpdateProduct()">
     <div class="modal-body">
       <div class="form-group">
         <input type="text" class="form-control" [(ngModel)]="editProduct.id" name="id" readonly>
@@ -59,6 +60,7 @@
       <button type="submit" class="btn btn-success">Update</button>
       <button type="button" class="btn btn-default" (click)="modalRef.hide()">Cancel</button>
     </div>
+  </form>
   </ng-template>
   <!--showTemplate modal -->
 

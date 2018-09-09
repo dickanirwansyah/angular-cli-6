@@ -75,6 +75,15 @@ export class ProductComponent implements OnInit {
       }, error => console.log(error))
   }
 
+  /** execute update product **/
+  executeUpdateProduct(productForm: NgForm){
+    this._productService.executeUpdateProduct(this.editProduct)
+      .subscribe(data => {
+        this.modalRef.hide();
+        this.getProductComponentList();
+        this.editProduct = new Product();
+      })
+  }
 
   getCategoryComponent(){
     this._categoryService.getCategoryList()

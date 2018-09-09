@@ -28,4 +28,9 @@ export class ProductService{
     return this._httpClient.get(this.baseUrl+'/api/product/'+productId);
   }
 
+  /** update product by id **/
+  executeUpdateProduct(dataProduct: Product): Observable<any>{
+    return this._httpClient.put(this.baseUrl+'/api/product/'+dataProduct.categoryId+'/'+dataProduct.id, dataProduct);
+  }
+
 }
